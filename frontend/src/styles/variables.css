@@ -1,0 +1,775 @@
+@import "tailwindcss";
+
+@theme {
+  --font-family-playfair: 'Playfair Display', serif;
+  --font-family-dm: 'DM Sans', sans-serif;
+  --color-ink: #251c35;
+  --color-purple: #5c3b8b;
+  --color-purple-dark: #4e3278;
+  --color-gold: #db9a40;
+  --color-pale: #f9f6f1;
+  --color-line: #e5dfd8;
+  --color-success: #2e7d32;
+  --color-danger: #b44040;
+  --color-warning: #c4860a;
+  --color-muted: #817987;
+  --color-text-secondary: #6e6573;
+  --color-text-tertiary: #9e8faa;
+  --spacing-page-max: 1280px;
+}
+
+:root {
+  --ink: #251c35;
+  --purple: #5c3b8b;
+  --gold: #db9a40;
+  --pale: #f9f6f1;
+  --line: #e5dfd8;
+  --success: #2e7d32;
+  --danger: #b44040;
+  --warning: #c4860a;
+  --muted: #817987;
+  --shadow-sm: 0 1px 3px rgba(37, 28, 53, 0.06);
+  --shadow-md: 0 4px 16px rgba(37, 28, 53, 0.08);
+  --shadow-lg: 0 8px 32px rgba(37, 28, 53, 0.12);
+  --shadow-xl: 0 20px 60px rgba(44, 23, 48, 0.1);
+  --shadow-glow: 0 0 0 3px rgba(92, 59, 139, 0.15);
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+  --r-full: 9999px;
+  --page-max: 1280px;
+  --page-pad: 32px;
+  --page-pad-desktop: 32px;
+  --page-pad-tablet: 24px;
+  --page-pad-mobile: 16px;
+  --font-playfair: 'Playfair Display', serif;
+  --font-dm: 'DM Sans', sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--pale);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--purple);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.15s;
+  }
+
+  a:hover {
+    color: #4e3278;
+  }
+}
+
+@layer components {
+  /* Shared container — consistent across header, hero, content, footer */
+  .page-container {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @media (max-width: 1024px) {
+    .page-container {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-container {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  /* Shell layout */
+  .shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image:
+      radial-gradient(circle at 12% 14%, #eee7f7 0, transparent 25%),
+      radial-gradient(circle at 90% 85%, #faead6 0, transparent 22%);
+  }
+
+  .shell-content {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  /* Astrologer layout */
+  .astro-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image:
+      radial-gradient(circle at 12% 14%, #eee7f7 0, transparent 25%),
+      radial-gradient(circle at 90% 85%, #faead6 0, transparent 22%);
+  }
+
+  .astro-layout-main {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  /* Brand */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Playfair Display';
+    color: #251c35;
+    font-size: 22px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .brand-mark {
+    display: inline-grid;
+    place-items: center;
+    background: #5c3b8b;
+    color: #fff;
+    width: 27px;
+    height: 27px;
+    border-radius: 9999px;
+    font-family: sans-serif;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  /* Base nav link style — shared by shell nav and astro nav */
+  .nav-link {
+    color: #555;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    border: 1px solid #e0dcd7;
+    background: #fff;
+    transition: all 0.15s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    background: #5c3b8b;
+    color: #fff;
+    border-color: #5c3b8b;
+  }
+
+  .nav-link.active {
+    background: #5c3b8b;
+    color: #fff;
+    border-color: #5c3b8b;
+  }
+
+  .nav-link.nav-cta {
+    background: #db9a40;
+    color: #fff;
+    border-color: #db9a40;
+    font-weight: 600;
+  }
+
+  .nav-link.nav-cta:hover {
+    background: #c08830;
+    border-color: #c08830;
+  }
+
+  /* Shell header */
+  header {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5dfd8;
+  }
+
+  header .page-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 13px;
+  }
+
+  nav .nav-break {
+    flex-basis: 100%;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  nav a {
+    color: #555;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 9999px;
+    border: 1px solid #e0dcd7;
+    background: #fff;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  nav a:hover {
+    background: #5c3b8b;
+    color: #fff;
+    border-color: #5c3b8b;
+  }
+
+  nav a.active {
+    background: #5c3b8b;
+    color: #fff;
+    border-color: #5c3b8b;
+  }
+
+  nav a.nav-cta {
+    background: #db9a40;
+    color: #fff;
+    border-color: #db9a40;
+    font-weight: 600;
+  }
+
+  nav a.nav-cta:hover {
+    background: #c08830;
+    border-color: #c08830;
+  }
+
+  footer {
+    font-size: 12px;
+    color: #817987;
+    text-align: center;
+    padding-block: 24px;
+  }
+
+  footer span {
+    padding: 0 10px;
+    color: #d39b57;
+  }
+
+  /* Stats card — used on astrologer dashboard */
+  .astro-stat-card {
+    background: #fff;
+    border: 1px solid #ebe5dd;
+    border-radius: 8px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    column-gap: 10px;
+    align-items: start;
+    transition: box-shadow 0.2s;
+    min-height: 90px;
+  }
+
+  .astro-stat-card.group:hover {
+    box-shadow: 0 1px 3px rgba(37, 28, 53, 0.06);
+  }
+
+  /* Page wrapper */
+  .page {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 36px 32px 60px;
+  }
+
+  @media (max-width: 1024px) {
+    .page {
+      padding: 36px 24px 60px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page {
+      padding: 36px 16px 60px;
+    }
+  }
+
+  /* Eyebrow text */
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #b585d0;
+    margin: 0 0 17px;
+    text-transform: uppercase;
+  }
+
+  /* Work dashboard root */
+  .work-dashboard {
+    /* padding is set via Tailwind utility classes in JSX */
+  }
+
+  /* Astro header */
+  .astro-header {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5dfd8;
+  }
+
+  .astro-header .page-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .astro-header-left {
+    flex-shrink: 0;
+  }
+
+  .astro-header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .astro-nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .astro-nav-more-wrap {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .astro-nav-more-toggle {
+    padding: 6px 14px;
+    border: 1px solid #e0dcd7;
+    border-radius: 9999px;
+    background: #fff;
+    font: 500 13px 'DM Sans';
+    color: #555;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .astro-nav-more-toggle:hover {
+    background: #5c3b8b;
+    color: #fff;
+    border-color: #5c3b8b;
+  }
+
+  .astro-nav-more-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 50;
+    margin-top: 4px;
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid #e5dfd8;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(37, 28, 53, 0.12);
+    padding: 8px;
+    display: grid;
+    gap: 4px;
+  }
+
+  .astro-nav-more-menu a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font: 500 13px 'DM Sans';
+    color: #555;
+    text-decoration: none;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .astro-nav-more-menu a:hover,
+  .astro-nav-more-menu a.active {
+    background: #5c3b8b;
+    color: #fff;
+  }
+
+  .astro-header-right {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .astro-logout-btn {
+    padding: 6px 16px;
+    border: 1px solid #e5dfd8;
+    border-radius: 9999px;
+    background: #fff;
+    font: 500 13px 'DM Sans';
+    color: #555;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .astro-logout-btn:hover {
+    background: #b44040;
+    color: #fff;
+    border-color: #b44040;
+  }
+
+  .astro-mobile-menu-btn {
+    display: none;
+    padding: 6px 10px;
+    border: 1px solid #e5dfd8;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    color: #5c3b8b;
+  }
+
+  /* Mobile overlay / drawer for astro nav */
+  .astro-mobile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .astro-mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 280px;
+    max-width: 80vw;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .astro-mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5dfd8;
+  }
+
+  .astro-mobile-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #251c35;
+  }
+
+  .astro-mobile-nav {
+    display: grid;
+    gap: 4px;
+    padding: 12px;
+  }
+
+  .astro-mobile-nav a {
+    padding: 10px 14px;
+    border-radius: 6px;
+    font: 500 14px 'DM Sans';
+    color: #555;
+    text-decoration: none;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .astro-mobile-nav a:hover,
+  .astro-mobile-nav a.active {
+    background: #5c3b8b;
+    color: #fff;
+  }
+
+  .astro-mobile-logout {
+    margin: 8px 12px 20px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font: 500 14px 'DM Sans';
+    color: #b44040;
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  /* Auth Grid */
+  .auth-grid {
+    max-width: 1120px;
+    margin: 25px auto 0;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    min-height: 650px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(44, 23, 48, 0.1);
+  }
+
+  .auth-aside {
+    background: linear-gradient(145deg, #2c1949, #624289);
+    padding: 75px 62px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .auth-aside::after {
+    content: '';
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border: 1px solid rgba(194, 163, 226, 0.27);
+    border-radius: 50%;
+    right: -180px;
+    bottom: -180px;
+  }
+
+  .auth-aside h1 {
+    font: italic 500 39px 'Playfair Display';
+    margin: 0 0 14px;
+    line-height: 1.15;
+    position: relative;
+    z-index: 1;
+  }
+
+  .auth-aside h1 em {
+    color: #db9a40;
+    font-style: italic;
+  }
+
+  .auth-aside > p {
+    font-size: 15px;
+    color: #ddd1e7;
+    line-height: 1.6;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .auth-aside .moon {
+    position: absolute;
+    top: -30px;
+    right: -20px;
+    font-size: 200px;
+    line-height: 0.8;
+    color: rgba(255, 255, 255, 0.06);
+    transform: rotate(15deg);
+  }
+
+  .aside-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #d8cce5;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote {
+    margin-top: 55px;
+    font: italic 500 18px 'Playfair Display';
+    line-height: 1.5;
+    color: #e3d5f0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .quote small {
+    display: block;
+    margin-top: 8px;
+    font: 400 13px 'DM Sans';
+    color: #b585d0;
+    font-style: normal;
+  }
+
+  .auth-card {
+    background: #fff;
+    padding: 75px 62px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Onboarding */
+  .onboarding-page {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 36px 32px 60px;
+  }
+
+  .onboarding-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .onboarding-header h1 {
+    font: 500 33px 'Playfair Display';
+    margin: 0 0 12px;
+  }
+
+  .onboarding-header h1 em {
+    color: #db9a40;
+  }
+
+  .onboarding-steps {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    color: #817987;
+  }
+
+  .onboarding-steps span {
+    padding: 6px 16px;
+    border-radius: 9999px;
+    border: 1px solid #e5dfd8;
+  }
+
+  .onboarding-steps span.active {
+    background: #5c3b8b;
+    color: #fff;
+    border-color: #5c3b8b;
+  }
+
+  .onboarding-form {
+    background: #fff;
+    border: 1px solid #e5dfd8;
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(37, 28, 53, 0.06);
+  }
+
+  .onboarding-form h2 {
+    font: 500 20px 'Playfair Display';
+    margin: 0 0 16px;
+  }
+
+  .interests-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 20px;
+  }
+
+  .interest-pill {
+    padding: 8px 16px;
+    border: 1px solid #e5dfd8;
+    border-radius: 10px;
+    background: #fff;
+    font: 600 13px 'DM Sans';
+    cursor: pointer;
+    color: #6e6573;
+    transition: all 0.15s;
+  }
+
+  .interest-pill.selected {
+    background: #5c3b8b;
+    color: #fff;
+    border-color: #5c3b8b;
+  }
+
+  .cosmic-select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #e5dfd8;
+    border-radius: 10px;
+    font: 14px 'DM Sans';
+    background: #fff;
+    color: #251c35;
+  }
+
+  .review-box {
+    background: #f9f6f1;
+    border: 1px solid #e5dfd8;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 16px 0;
+  }
+
+  .review-box p {
+    margin: 0 0 8px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .review-box .muted {
+    color: #817987;
+    font-size: 13px;
+  }
+
+  /* Forgot page */
+  .forgot-page {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 0 32px;
+  }
+
+  @media (max-width: 480px) {
+    .forgot-page {
+      padding: 0 16px;
+    }
+  }
+
+  .forgot-card {
+    background: #fff;
+    border: 1px solid #e5dfd8;
+    border-radius: 14px;
+    padding: 32px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(37, 28, 53, 0.06);
+  }
+}
+
+@layer base {
+  /* Mobile overrides */
+  @media (max-width: 480px) {
+    .astro-header .page-container {
+      flex-wrap: wrap;
+    }
+
+    .astro-header-center {
+      display: none;
+    }
+
+    .astro-mobile-menu-btn {
+      display: inline-flex;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .astro-header-center {
+      display: none;
+    }
+
+    .astro-mobile-menu-btn {
+      display: inline-flex;
+    }
+  }
+}

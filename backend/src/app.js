@@ -1,0 +1,92 @@
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import multer from 'multer';
+import { fail } from './utils/response.js';
+import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
+import astrologerRoutes from './routes/astrologer.routes.js';
+import campaignRoutes from './routes/campaign.routes.js';
+import walletRoutes from './routes/wallet.routes.js';
+import purchaseRoutes from './routes/purchase.routes.js';
+import questionRoutes from './routes/question.routes.js';
+import disputeRoutes from './routes/dispute.routes.js';
+import subscriptionRoutes from './routes/subscription.routes.js';
+import followRoutes from './routes/follow.routes.js';
+import perksRoutes from './routes/perks.routes.js';
+import audienceRoutes from './routes/audience.routes.js';
+import liveRoutes from './routes/live.routes.js';
+import liveUserRoutes from './routes/liveUser.routes.js';
+import onboardingRoutes from './routes/onboarding.routes.js';
+import sessionRoutes from './routes/session.routes.js';
+import appointmentRoutes from './routes/appointment.routes.js';
+import notificationRoutes from './routes/notification.routes.js';
+import paymentRoutes from './routes/payment.routes.js';
+import messageRoutes from './routes/message.routes.js';
+import analyticsRoutes from './routes/analytics.routes.js';
+import aiRoutes from './routes/ai.routes.js';
+import freeCalculationRoutes from './routes/freeCalculation.routes.js';
+import contentRoutes from './routes/content.routes.js';
+import atonementRoutes from './routes/atonement.routes.js';
+import staffRoutes from './routes/staff.routes.js';
+import emergencyRoutes from './routes/emergency.routes.js';
+import emergencySlotsRoutes from './routes/emergencySlots.routes.js';
+import profileRoutes from './routes/profile.routes.js';
+import featuresRoutes from './routes/features.routes.js';
+import { seedDatabase } from './db/seed.js';
+
+const app = express();
+
+app.use(helmet());
+app.use(cors());
+app.use(express.json());
+app.use('/api/auth', rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
+
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/astrologer', astrologerRoutes);
+app.use('/api/astrologer/question-campaigns', campaignRoutes);
+app.use('/api/user/wallet', walletRoutes);
+app.use('/api/astrologer/wallet', walletRoutes);
+app.use('/api/user/question-purchases', purchaseRoutes);
+app.use('/api/user/questions', questionRoutes);
+app.use('/api/astrologer/questions', questionRoutes);
+app.use('/api/user/question-disputes', disputeRoutes);
+app.use('/api/astrologer/question-disputes', disputeRoutes);
+app.use('/api', subscriptionRoutes);
+app.use('/api', followRoutes);
+app.use('/api', perksRoutes);
+app.use('/api', audienceRoutes);
+app.use('/api/astrologer', liveRoutes);
+app.use('/api/user', liveUserRoutes);
+app.use('/api', onboardingRoutes);
+app.use('/api/auth', sessionRoutes);
+app.use('/api', appointmentRoutes);
+app.use('/api', notificationRoutes);
+app.use('/api', paymentRoutes);
+app.use('/api', messageRoutes);
+app.use('/api', analyticsRoutes);
+app.use('/api/user/ai', aiRoutes);
+app.use('/api/free-calculations', freeCalculationRoutes);
+app.use('/api', contentRoutes);
+app.use('/api', atonementRoutes);
+app.use('/api', staffRoutes);
+app.use('/api', emergencySlotsRoutes);
+app.use('/api', emergencyRoutes);
+app.use('/api', profileRoutes);
+app.use('/api', featuresRoutes);
+
+app.get('/api/health', (_, res) => res.json({ success: true, message: 'CosmicConnect API is running' }));
+
+app.use((err, req, res, next) => {
+  console.error(`[${req.method} ${req.originalUrl}]`, err);
+  if (res.headersSent) return next(err);
+  if (err instanceof multer.MulterError) return fail(res, err.code === 'LIMIT_FILE_SIZE' ? 'Each document must be 5 MB or smaller.' : err.message);
+  return fail(res, err.message || 'Unexpected server error.', 500);
+});
+
+seedDatabase().catch(err => console.error('Seed error:', err.message));
+
+export default app;

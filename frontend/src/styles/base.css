@@ -1,0 +1,206 @@
+/* ====================== Base / Global Resets ====================== */
+
+/* User dashboard greeting (legacy classes used by user-facing Dashboard) */
+.dash-greeting {
+  font: italic 500 36px 'Playfair Display';
+  color: var(--purple);
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.dash-subtext {
+  font: italic 400 15px 'DM Sans';
+  color: #9e8faa;
+  margin: 0;
+}
+
+/* User dashboard stat cards grid */
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 20px 0 28px;
+}
+
+.dash-stat {
+  background: #fff;
+  border: 1px solid #ebe5dd;
+  border-radius: var(--r-md);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  column-gap: 8px;
+  transition: box-shadow 0.2s;
+}
+
+.dash-stat:hover { box-shadow: var(--shadow-sm); }
+
+.dash-stat > span {
+  grid-row: 1 / 4;
+  color: var(--purple);
+  font-size: 18px;
+}
+
+.dash-stat small { font-size: 10px; color: var(--muted); }
+.dash-stat b { font-size: 22px; margin: 5px 0; }
+.dash-stat em {
+  font-size: 10px;
+  color: #918894;
+  font-style: normal;
+}
+
+/* User dashboard top section */
+.dash-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.dash-top h1 {
+  font: 500 33px 'Playfair Display';
+  margin: 0 0 7px;
+}
+
+.dash-top p:not(.eyebrow) {
+  color: #807785;
+  font-size: 14px;
+  margin: 0;
+}
+
+.online, .wallet-chip {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-full);
+  padding: 10px 15px;
+  font-size: 12px;
+  color: #6e6573;
+}
+
+.online { color: #458d5f; }
+
+.wallet-chip {
+  font-weight: 700;
+  color: var(--purple);
+}
+
+.wallet-chip small {
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 3px;
+}
+
+/* Astro hero (user-facing) */
+.astro-hero {
+  min-height: 235px;
+  background: linear-gradient(112deg, #31204e, #754c95);
+  border-radius: var(--r-lg);
+  margin: 29px 0;
+  padding: 30px 39px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+
+.astro-hero p, .reminder p {
+  color: #e9b56b;
+  font-size: 10px;
+  letter-spacing: 1.7px;
+  font-weight: 700;
+}
+
+.astro-hero h2 {
+  font: 500 29px 'Playfair Display';
+  margin: 8px 0;
+}
+
+.astro-hero h2 em { color: #f4c274; }
+
+.astro-hero span {
+  display: block;
+  color: #ddd1e7;
+  font-size: 13px;
+  max-width: 370px;
+}
+
+.astro-hero button, .reminder button {
+  display: block;
+  margin-top: 19px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: #fff;
+  color: var(--purple);
+  padding: 10px 13px;
+  font: 600 11px 'DM Sans';
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.astro-hero button:hover, .reminder button:hover {
+  background: var(--pale);
+}
+
+.hero-moon {
+  font-size: 210px;
+  line-height: 0.8;
+  color: rgba(255, 255, 255, 0.11);
+  transform: rotate(15deg);
+}
+
+/* User Live Now section */
+.dash-live-section { margin: 20px 0; }
+
+.dash-live-section h2 {
+  font: 500 18px 'Playfair Display';
+  margin: 0 0 12px;
+}
+
+.dash-live-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.dash-live-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  background: #fff;
+  border: 2px solid var(--danger);
+  border-radius: var(--r-lg);
+  text-decoration: none;
+  color: var(--ink);
+  transition: box-shadow 0.2s;
+}
+
+.dash-live-card:hover { box-shadow: 0 4px 16px rgba(180, 64, 64, 0.13); }
+.dash-live-card h3 { font: 600 14px 'DM Sans'; margin: 0; }
+.dash-live-card p { font-size: 12px; color: #6e6573; margin: 0; }
+.dash-live-viewers { font-size: 11px; color: var(--muted); }
+
+/* Top astro grid */
+.top-astro-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.top-astro-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.top-astro-card:hover {
+  box-shadow: 0 6px 24px rgba(92, 59, 139, 0.07);
+  transform: translateY(-1px);
+}
+.top-astro-meta { display: flex; gap: 8px; margin: 4px 0; font-size: 12px; }
+.top-astro-lang { font-size: 12px; color: #6e6573; margin: 2px 0; }
+.top-astro-bottom { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.top-astro-price { font: 700 16px 'DM Sans'; color: var(--purple); }

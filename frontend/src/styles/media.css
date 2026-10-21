@@ -1,0 +1,165 @@
+/* ====================== Media Queries ====================== */
+
+/* Tablet (1024px and below) — hide desktop nav, show mobile button for astro-header */
+@media (max-width: 1024px) {
+  .explore-layout, .profile-layout, .tracking-layout,
+  .checkout-layout, .purchase-layout {
+    grid-template-columns: 1fr;
+  }
+  .explore-filters, .profile-sidebar,
+  .tracking-timeline-card, .purchase-summary-card {
+    position: static;
+  }
+  .chat-layout { grid-template-columns: 1fr; }
+  .wallet-layout { grid-template-columns: 1fr; }
+  .live-room-layout { grid-template-columns: 1fr; }
+  .staff-summary-cards { grid-template-columns: repeat(3, 1fr); }
+  .admin-dash-stats { grid-template-columns: repeat(2, 1fr); }
+  .admin-dash-action-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Astrologer header — switch to mobile mode */
+  .astro-header-center {
+    display: none;
+  }
+  .astro-mobile-menu-btn {
+    display: inline-flex;
+  }
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .page-container {
+    padding-inline: 24px;
+  }
+  .page {
+    padding: 36px 24px 60px;
+  }
+  header {
+    flex-wrap: wrap;
+  }
+  nav {
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  .auth-grid { grid-template-columns: 1fr; margin: 0; border-radius: 0; }
+  .auth-aside { padding: 45px 28px; min-height: 280px; }
+  .auth-card { padding: 40px 28px; }
+  .auth-aside h1 { font-size: 32px; }
+  .aside-list, .quote { margin-top: 24px; }
+
+  .work-dashboard { padding: 24px 24px 60px; }
+  .dash-top { display: block; }
+  .dash-top h1 { font-size: 29px; }
+  .online, .wallet-chip { display: inline-block; margin-top: 12px; }
+  .astro-hero { padding: 24px; }
+  .hero-moon { display: none; }
+  .actions { grid-template-columns: 1fr; }
+
+  .explore-page, .profile-page, .purchase-page,
+  .submit-question-page, .tracking-page, .wallet-page,
+  .my-questions-page, .subscriptions-page, .perks-page,
+  .checkout-page, .sessions-page, .appointment-booking-page,
+  .appointments-page, .notifications-page, .payments-page,
+  .dispute-page, .fc-detail-page, .atonement-detail-wrap,
+  .profile-edit-page, .live-lobby-page, .live-dashboard-page {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .page-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+  .dash-columns { grid-template-columns: 1fr; }
+  .staff-summary-cards { grid-template-columns: repeat(2, 1fr); }
+  .staff-form-grid { grid-template-columns: 1fr; }
+  .emer-stat-row { grid-template-columns: repeat(2, 1fr); }
+  .admin-dash-stats { grid-template-columns: 1fr 1fr; }
+
+  .profile-header-card { flex-direction: column; align-items: center; text-align: center; }
+  .astro-grid { grid-template-columns: 1fr; }
+  .fc-row { grid-template-columns: 1fr; }
+  .fc-rasi-grid { grid-template-columns: repeat(2, 1fr); }
+  .fc-moon-strip { grid-template-columns: 1fr; }
+  .purchase-detail-grid { grid-template-columns: 1fr; }
+  .atonement-user-summary { flex-direction: column; }
+  .atonement-detail-header { flex-direction: column; }
+
+  .subscription-layout { grid-template-columns: 1fr; }
+  .booking-steps { flex-wrap: wrap; }
+
+  .chat-sidebar { display: none; }
+  .chat-layout { grid-template-columns: 1fr; }
+
+  .disp-detail-grid { grid-template-columns: 1fr; }
+  .disp-card-meta { flex-direction: column; gap: 4px; }
+  .staff-kill-grid { grid-template-columns: 1fr; }
+  .dash-live-grid { grid-template-columns: 1fr; }
+  .live-grid { grid-template-columns: 1fr; }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .page-container {
+    padding-inline: 16px;
+  }
+  .page {
+    padding: 36px 16px 60px;
+  }
+  /* Astrologer dashboard mobile */
+  .astro-header .page-container {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .astro-header-center {
+    display: none;
+  }
+  .astro-mobile-menu-btn {
+    display: inline-flex;
+  }
+  .astro-header-right {
+    padding-left: 8px;
+  }
+  .astro-header-left {
+    padding-right: 8px;
+  }
+
+  .astro-stat-card {
+    grid-template-columns: 20px 1fr;
+    padding: 14px;
+    gap: 6px;
+  }
+
+  .dash-stats { grid-template-columns: 1fr; }
+  .admin-dash-stats { grid-template-columns: 1fr; }
+  .admin-dash-action-grid { grid-template-columns: 1fr; }
+  .staff-summary-cards { grid-template-columns: 1fr; }
+  .emer-stat-row { grid-template-columns: 1fr; }
+  .earnings-summary { flex-direction: column; }
+  .mer-rate-display { flex-direction: column; }
+  .header-actions { flex-wrap: wrap; }
+  .subs-active-header { flex-direction: column; }
+  .subs-following-card { flex-direction: column; text-align: center; }
+  .subs-following-info { flex-direction: column; }
+  .session-card { flex-direction: column; gap: 8px; text-align: left; align-items: flex-start; }
+  .question-row { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .subs-row { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .payment-card { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .campaign-row { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .pf-row { flex-direction: column; }
+  .edit-header { flex-direction: column; }
+  .edit-completeness { flex-direction: column; }
+  .edit-actions { flex-direction: column; }
+  .submit-actions { flex-direction: column; }
+  .success-actions { flex-direction: column; }
+  .ps-note { text-align: left; }
+  .queue-row { flex-direction: column; gap: 8px; }
+  .call-video-self { width: 100px; right: 16px; bottom: 80px; }
+  .call-video-main { width: 95%; }
+  .upage-basic { flex-direction: column; text-align: center; }
+  .upage-detail-grid { grid-template-columns: 1fr; }
+  .upage-field-row { grid-template-columns: 1fr; }
+  .upage-preview-header { flex-direction: column; text-align: center; }
+  .emer-header { flex-direction: column; align-items: flex-start; }
+  .staff-detail-grid { grid-template-columns: 1fr; }
+  .admin-filters { flex-direction: column; }
+  .admin-filters input, .admin-filters select { width: 100%; }
+}
